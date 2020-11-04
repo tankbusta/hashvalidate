@@ -3,12 +3,23 @@ package modules
 import (
 	"testing"
 
+	"github.com/tankbusta/hashvalidate/hashes"
 	"github.com/tankbusta/hashvalidate/tokenizer"
 )
 
 type tokenizerComparison struct {
 	Length int
 	Buffer string
+}
+
+func checkBasicAPIs(t *testing.T, typ hashes.IHashType) {
+	if typ.Type() < 0 {
+		t.Fatal("Hash Type must be greater than or equal to 0")
+	}
+
+	if typ.Name() == "" {
+		t.Fatal("Hash Name must not be an empty string")
+	}
 }
 
 func compareTokens(t *testing.T, expected []tokenizerComparison, actual []tokenizer.Token) {
