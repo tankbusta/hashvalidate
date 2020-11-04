@@ -22,8 +22,8 @@ func (s sha256_1400) Type() int { return 1400 }
 func (s sha256_1400) Tokens() []tokenizer.Token {
 	return []tokenizer.Token{
 		{
-			LengthMin:  40,
-			LengthMax:  40,
+			LengthMin:  64,
+			LengthMax:  64,
 			Attributes: tokenizer.VerifyLength | tokenizer.VerifyHex,
 		},
 	}
