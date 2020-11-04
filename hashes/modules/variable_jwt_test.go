@@ -8,6 +8,7 @@ import (
 
 func Test_VariableJWT(t *testing.T) {
 	hashType := &jwts{typ: 16511}
+	checkBasicAPIs(t, hashType)
 
 	tokens, err := tokenizer.Tokenize(
 		hashType.Example(),

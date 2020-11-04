@@ -8,6 +8,7 @@ import (
 
 func Test_NTLM1000Type(t *testing.T) {
 	hashType := new(ntlm1000)
+	checkBasicAPIs(t, hashType)
 
 	tokens, err := tokenizer.Tokenize(
 		hashType.Example(),

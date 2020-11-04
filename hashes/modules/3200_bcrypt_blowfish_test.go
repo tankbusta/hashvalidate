@@ -8,6 +8,7 @@ import (
 
 func Test_BCrypt3200Type(t *testing.T) {
 	hashType := new(bcrypt3200)
+	checkBasicAPIs(t, hashType)
 
 	tokens, err := tokenizer.Tokenize(
 		hashType.Example(),

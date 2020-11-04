@@ -8,6 +8,7 @@ import (
 
 func Test_Grub7200Type(t *testing.T) {
 	hashType := new(grub27200)
+	checkBasicAPIs(t, hashType)
 
 	tokens, err := tokenizer.Tokenize(
 		hashType.Example(),
