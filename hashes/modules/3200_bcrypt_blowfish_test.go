@@ -14,7 +14,7 @@ func Test_BCrypt3200Type(t *testing.T) {
 		hashType.Tokens(),
 	)
 	if err != nil {
-		t.Fatalf("Unexpected error validating bcrypt2 hashes: %s", err)
+		t.Fatalf("Unexpected error validating %s hashes: %s", hashType.Name(), err)
 	}
 
 	compareTokens(

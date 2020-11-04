@@ -6,7 +6,10 @@ import (
 	"strings"
 )
 
-// Tokenize TODO
+// Tokenize splits the token up based on length and separators embedded within the input string
+//
+// If the input is properly tokenized, the return value will be a modified version of the input token
+// definition along with the length of the token and it's value
 func Tokenize(input string, tokens []Token) ([]Token, error) {
 	left := len(input)
 
@@ -55,7 +58,7 @@ func Tokenize(input string, tokens []Token) ([]Token, error) {
 		len := tokens[tokenIdx].Length
 
 		if left != len {
-			return nil, fmt.Errorf("Token length missmatch on %d", tokenIdx)
+			return nil, fmt.Errorf("Token length mismatch on %d", tokenIdx)
 		}
 	}
 
