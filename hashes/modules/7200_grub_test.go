@@ -14,7 +14,7 @@ func Test_Grub7200Type(t *testing.T) {
 		hashType.Tokens(),
 	)
 	if err != nil {
-		t.Fatalf("Unexpected error validating GRUB 7200 hashes: %s", err)
+		t.Fatalf("Unexpected error validating %s hashes: %s", hashType.Name(), err)
 	}
 
 	compareTokens(

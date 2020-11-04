@@ -19,7 +19,13 @@ func ValidateHash(hashTypeID int, hash string) error {
 		return err
 	}
 
-	tokens, err := tokenizer.Tokenize(hash, validator.Tokens())
+	return ValidateHashWithTokens(hash, validator.Tokens())
+}
+
+// ValidateHashWithTokens ensures the provided hash and list of tokens validates correctly.
+// An error is returned if the hash fails
+func ValidateHashWithTokens(hash string, tokens []tokenizer.Token) error {
+	tokens, err := tokenizer.Tokenize(hash, tokens)
 	if err != nil {
 		return err
 	}

@@ -14,7 +14,7 @@ func Test_MD50Type(t *testing.T) {
 		hashType.Tokens(),
 	)
 	if err != nil {
-		t.Fatalf("Unexpected error validating MD5 hashes: %s", err)
+		t.Fatalf("Unexpected error validating %s hashes: %s", hashType.Name(), err)
 	}
 
 	compareTokens(
