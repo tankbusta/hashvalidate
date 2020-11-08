@@ -8,6 +8,7 @@ import (
 
 func Test_MD50Type(t *testing.T) {
 	hashType := new(md50)
+	checkBasicAPIs(t, hashType)
 
 	tokens, err := tokenizer.Tokenize(
 		hashType.Example(),

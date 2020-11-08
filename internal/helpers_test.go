@@ -1,6 +1,9 @@
 package internal
 
-import "testing"
+import (
+	"encoding/base64"
+	"testing"
+)
 
 func TestIsValidHex(t *testing.T) {
 	if !IsValidHex("deadbeef") {
@@ -41,5 +44,37 @@ func TestIsValidFloat(t *testing.T) {
 
 	if IsValidDigit("1234.dead") {
 		t.Fatal("expected 1234.dead to return false")
+	}
+}
+
+func TestIsValidBase64StdAlphabet(t *testing.T) {
+	out := base64.StdEncoding.EncodeToString([]byte("hello world"))
+	if !IsValidBase64StdAlphabet(out) {
+		t.Fatalf("expected %s to return true", out)
+	}
+
+	if IsValidBase64StdAlphabet("dGghaXMhM3c1MTNhc2YudGghaXMh.dGghaXMhM3c1MTNhc2YudGghaXMh") {
+		t.Fatal("expected dGghaXMhM3c1MTNhc2YudGghaXMh.dGghaXMhM3c1MTNhc2YudGghaXMh to return false")
+	}
+}
+
+func TestIsValidBase64UrlSafeAlphabet(t *testing.T) {
+	urlout := base64.URLEncoding.EncodeToString([]byte("this is a test"))
+	if !IsValidBase64UrlSafeAlphabet(urlout) {
+		t.Fatalf("expected %s to return true", urlout)
+	}
+
+	if IsValidBase64UrlSafeAlphabet("aGV+sbG8gd29ybGQ=") {
+		t.Fatal("expected aGV+sbG8gd29ybGQ= to return false")
+	}
+}
+
+func TestIsValidBase64BAlphabet(t *testing.T) {
+	if !IsValidBase64BAlphabet("aGV.sbGgd29ybGQ=") {
+		t.Fatal("expected aGV.sbGgd29ybGQ= to return true")
+	}
+
+	if IsValidBase64BAlphabet("aGV+sbG8gd29ybGQ=") {
+		t.Fatal("expected aGV+sbG8gd29ybGQ= to return false")
 	}
 }
