@@ -19,6 +19,15 @@ func ValidateHash(hashTypeID int, hash string) error {
 		return err
 	}
 
+	if customTokens, ok := validator.(hashes.IDynamicToken); ok {
+		tokens, err := customTokens.GenerateTokens(hash, validator.Tokens())
+		if err != nil {
+			return err
+		}
+
+		return ValidateHashWithTokens(hash, tokens)
+	}
+
 	return ValidateHashWithTokens(hash, validator.Tokens())
 }
 
